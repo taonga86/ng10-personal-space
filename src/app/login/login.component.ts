@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from  'firebase';
+// import from firebase/app instead of from firebase: good or bad idea?
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,15 @@ import firebase from  'firebase';
 })
 export class LoginComponent implements OnInit {
   result;
+  currentUser: firebase.User;
 
   constructor(private afAuth: AngularFireAuth) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.afAuth.authState.subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
 
   async loginWithGoogle() {
     try {
@@ -23,5 +29,9 @@ export class LoginComponent implements OnInit {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  async signOut() {
+    await this.afAuth.signOut();
   }
 }

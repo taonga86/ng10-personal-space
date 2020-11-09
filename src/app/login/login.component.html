@@ -1,2 +1,12 @@
-<br>
-<button mat-button color="primary" (click)="loginWithGoogle()">Se connecter avec un compte Gmail</button>
+<br />
+<div *ngIf="!currentUser">
+  <button mat-button color="primary" (click)="loginWithGoogle()">
+    Se connecter avec un compte Gmail
+  </button>
+</div>
+
+<div *ngIf="currentUser">
+    Bonjour {{ currentUser.displayName }}
+    <br>
+    <button mat-raised-button (click)="signOut()">déconnexion</button>
+</div>
