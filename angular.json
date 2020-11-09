@@ -119,6 +119,10 @@
               "devServerTarget": "ng10-personal-space:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

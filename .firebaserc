@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng10-personal-space": {
+      "hosting": {
+        "ng10-personal-space": [
+          "ng10-personal-space"
+        ]
+      }
+    }
+  }
+}
