@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyCGkyTqPYIae6az0oeiCyIXh0j4-Zvv4n4',
-    authDomain: 'ng10-personal-space.firebaseapp.com',
-    databaseURL: 'https://ng10-personal-space.firebaseio.com',
-    projectId: 'ng10-personal-space',
-    storageBucket: 'ng10-personal-space.appspot.com',
-    messagingSenderId: '689848624327',
-    appId: '1:689848624327:web:33c79f8e2f40dafc908ae2',
+    apiKey: "AIzaSyDHd5fMxSzRyNxFUugZrdu2D1IeovZAG30",
+    authDomain: "ng10-personal-space-181d7.firebaseapp.com",
+    databaseURL: "https://ng10-personal-space-181d7.firebaseio.com",
+    projectId: "ng10-personal-space-181d7",
+    storageBucket: "ng10-personal-space-181d7.appspot.com",
+    messagingSenderId: "42703690091",
+    appId: "1:42703690091:web:d28e68ec3167926c4e542e"
   },
 };
 
