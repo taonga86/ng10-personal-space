@@ -8,4 +8,10 @@
   <button mat-menu-item (click)="navigateTo('contact')">nous contacter</button>
   <button mat-menu-item (click)="navigateTo('location')">adresse</button>
 </mat-menu>
+
+<button mat-button [matMenuTriggerFor]="albumMenu">Album photo</button>
+<mat-menu #albumMenu="matMenu" yPosition="below">
+  <button mat-menu-item (click)="navigateTo('album')">photos</button>
+</mat-menu>
+
 <router-outlet></router-outlet>
