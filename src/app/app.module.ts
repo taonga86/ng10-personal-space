@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 
 import { HomeComponent } from './home/home.component';
@@ -37,6 +38,7 @@ import { PhotoAlbumComponent } from './photo-album/photo-album.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFireStorageModule,
     MatMenuModule,
     MatButtonModule,
   ],

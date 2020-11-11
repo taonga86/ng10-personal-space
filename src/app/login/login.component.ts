@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 // import from firebase/app instead of from firebase: good or bad idea?
 import firebase from 'firebase/app';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   result;
   currentUser: firebase.User;
+  userSub: Subscription;
 
   constructor(private afAuth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    this.afAuth.authState.subscribe((user) => {
+    this.userSub = this.afAuth.authState.subscribe((user) => {
       this.currentUser = user;
     });
   }
@@ -33,5 +35,9 @@ export class LoginComponent implements OnInit {
 
   async signOut() {
     await this.afAuth.signOut();
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }
