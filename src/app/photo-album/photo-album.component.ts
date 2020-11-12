@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import firebase from 'firebase/app';
 import { Subscription } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { DbService } from '../services/db.service';
 
 @Component({
   selector: 'app-photo-album',
@@ -16,15 +17,33 @@ export class PhotoAlbumComponent implements OnInit {
   userSub: Subscription;
   photoServerURL$;
   uploadedImgURL;
+  personalSpace;
 
   constructor(
     private afAuth: AngularFireAuth,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private db: DbService
   ) {}
 
   ngOnInit(): void {
     this.afAuth.authState.subscribe((user) => {
       this.user = user;
+      if (this.user) {
+        this.db.readPersonalSpaceByUID(this.user.uid).subscribe(
+          (data) => {
+            console.log('personal space', data);
+            this.personalSpace = data;
+            // If currently logged in user does NOT have a personal space already, create one
+            if (!data || data.length === 0) {
+              console.log(`creating a new space for ${this.user.displayName}`);
+              this.db.createPersonalSpace(this.user);
+            }
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
+      }
     });
   }
 
@@ -63,6 +82,10 @@ export class PhotoAlbumComponent implements OnInit {
           this.photoServerURL$.subscribe((data) => {
             console.log('data ', data);
             this.uploadedImgURL = data;
+            this.db.updatePersonalSpacePhotoURLs(
+              this.user,
+              this.uploadedImgURL
+            );
           });
         })
       )
