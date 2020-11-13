@@ -1,0 +1,10 @@
+<br>
+<div *ngIf="!currentUser">
+    <button mat-button color="primary" (click)="loginWithGoogle()">Se connecter avec google</button>
+</div>
+<div *ngIf="currentUser">
+    Connected as {{currentUser.displayName}}
+    <button mat-button color="secondary" (click)="signOut()">sign out</button>
+</div>
+
+

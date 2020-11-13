@@ -1,0 +1,8 @@
+<h3>Photo Album</h3>
+
+<form #uploadForm="ngForm" (ngSubmit)="postPhoto(uploadForm)">
+    <input type="text" name="title" id="title" required [(ngModel)]="photo.title">
+    <br>
+    <input type="file" name="fileUpload" id="fileUpload" (change)="onFileChange($event)">
+    <button type="submit" [disabled]="!uploadForm.form.valid"> upload</button>
+</form>
